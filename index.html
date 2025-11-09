@@ -171,7 +171,7 @@
 <footer>Telefon: +90 555 555 55 55 &nbsp;|&nbsp; E-posta: info@floracarfilo.com &nbsp;|&nbsp; Türkiye</footer>
 
 <!-- WhatsApp sabit -->
-<a class="wh" href="https://wa.me/905555555555" target="_blank" rel="noopener">WhatsApp</a>
+<a class="wh" href="tel:+905555555555" target="_blank" rel="noopener">WhatsApp</a>
 
 <!-- Görsel & detay modal -->
 <div id="modal" class="modal" aria-hidden="true" role="dialog">
@@ -267,7 +267,7 @@ vehicles.forEach((v,i)=>{
       </div>
 
       <div class="btn-row">
-        <a class="btn" href="https://wa.me/905555555555?text=${encodeURIComponent('Merhaba, ' + v.name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">Hemen Ara</a>
+        <a class="btn" href="tel:+905555555555?text=${encodeURIComponent('Merhaba, ' + v.name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">Hemen Ara</a>
         <a class="btn secondary" href="javascript:openModal(${i})">Detay</a>
       </div>
     </div>
@@ -312,7 +312,7 @@ function openModal(index){
   document.getElementById('modalEnd').value = '';
   document.getElementById('modalTotal').textContent = 'Toplam: -';
   // güncelle whats link
-  document.getElementById('modalWhats').href = `https://wa.me/905555555555?text=${encodeURIComponent('Merhaba, ' + currentVehicle.name + ' hakkında bilgi almak istiyorum.')}`;
+  document.getElementById('modalWhats').href = `tel:+905555555555?text=${encodeURIComponent('Merhaba, ' + currentVehicle.name + ' hakkında bilgi almak istiyorum.')}`;
   modal.style.display = 'flex';
   modal.setAttribute('aria-hidden','false');
 }
@@ -351,10 +351,10 @@ function updateModalTotal(){
     totalEl.textContent = `Toplam (${d} gün): ${formatTL(total)}`;
     // gün, araç, fiyat bilgisini mesaja ekle
     const text = `Merhaba, ${currentVehicle.name} için ${s} - ${e} (${d} gün) fiyat bilgisini almak istiyorum. Toplam: ${formatTL(total)}`;
-    document.getElementById('modalWhats').href = 'https://wa.me/905555555555?text=' + encodeURIComponent(text);
+    document.getElementById('modalWhats').href = 'tel:+905555555555?text=' + encodeURIComponent(text);
   } else {
     totalEl.textContent = 'Toplam: -';
-    document.getElementById('modalWhats').href = `https://wa.me/905555555555?text=${encodeURIComponent('Merhaba, ' + currentVehicle.name + ' hakkında bilgi almak istiyorum.')}`;
+    document.getElementById('modalWhats').href = `tel:+905555555555?text=${encodeURIComponent('Merhaba, ' + currentVehicle.name + ' hakkında bilgi almak istiyorum.')}`;
   }
 }
 
