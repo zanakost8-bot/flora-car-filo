@@ -92,11 +92,9 @@
     <a href="#services">Hizmetlerimiz</a>
     <a href="#locations">Lokasyonlar</a>
     <a href="#about">Hakkımızda</a>
+    <a href="#reservation">Rezervasyon</a>
   </nav>
-
-<button class="menu-toggle" aria-label="Menüyü Aç/Kapat">☰</button>
 </header>
-
 <!-- Hero Görseli -->
 <section id="hero" style="text-align:center;position:relative;padding-bottom:24px;">
   <img src="images/hero.jpg" alt="Flora Car Filo Karşılama Görseli" style="width:100%;height:auto;display:block;">
@@ -168,6 +166,16 @@
     <h2 id="aboutTitle">Hakkımızda</h2>
     <p class="service-desc">2009’dan beri Flora Car Filo; bireysel ve kurumsal müşterilere şeffaflık, güven ve yüksek hizmet standardı ile araç kiralama çözümleri sunar. Filomuz düzenli bakımları yapılan, temiz ve sigortalı araçlardan oluşur; operasyonel süreçlerimiz hızlı teslimat, vale karşılama ve 7/24 destek ile şekillenmiştir. Kurumsal partnerlerimize özel filo yönetimi, esnek fiyatlama ve raporlama hizmetleri sağlıyoruz. Müşteri memnuniyeti ve sürekli iyileştirme önceliğimizdir; rezervasyonsuz süreçlerimizle hızlı iletişim (WhatsApp) üzerinden araç temini sağlanır.</p>
   </section>
+
+
+<!-- RESERVATION SECTION -->
+<section id="reservation" aria-labelledby="reservationTitle">
+  <h2 id="reservationTitle">Rezervasyon</h2>
+  <p class="service-desc">Aşağıdan hızlıca araç seçip WhatsApp ile rezervasyon gönderebilirsiniz. Depozito: 3000 ₺.</p>
+  <div class="grid" id="reservationList">
+    <!-- Filled by JS -->
+  </div>
+</section>
 
 </main>
 
@@ -242,6 +250,8 @@ function daysBetween(a,b){
 }
 function formatTL(n){ return n.toLocaleString('tr-TR') + ' ₺'; }
 
+const DEPOSIT = 3000;
+
 /* fleet render (kart içi tarih hesaplama ve modal açma) */
 const fleetEl = document.getElementById('fleetContainer');
 vehicles.forEach((v,i)=>{
@@ -260,8 +270,16 @@ vehicles.forEach((v,i)=>{
     <div class="card-body">
       <div class="title">${v.name}</div>
       <div class="meta-row"><div>Yakıt: ${v.fuel}</div><div>Vites: ${v.gear}</div><div>Model: ${v.model}</div></div>
-      <div class="price-row"><div class="daily">${formatTL(v.price)} / Gün</div><div class="monthly">Aylık (30g): ${formatTL(monthly)}</div></div>
+      <div class="price-row"><div class="daily">${formatTL(v.price)} / Gün</div><div class="monthly">Aylık (30g): ${formatTL(i < 4 ? Math.round(v.price*30*0.9) : v.price*30)}</div></div>
       <div class="desc">Araç bakımları rutin olarak yapılmaktadır.</div>
+
+      <div style="margin-top:8px">
+        <label style="font-weight:700;font-size:13px;">Şehir</label><br>
+        <select class="city" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;margin-top:6px;">
+          <option value="">Şehir seçiniz</option>
+<option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Amasya">Amasya</option><option value="Ankara">Ankara</option><option value="Antalya">Antalya</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Bursa">Bursa</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Isparta">Isparta</option><option value="Mersin">Mersin</option><option value="İstanbul">İstanbul</option><option value="İzmir">İzmir</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Mardin">Mardin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Trabzon">Trabzon</option><option value="Tunceli">Tunceli</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option><option value="Aksaray">Aksaray</option><option value="Bayburt">Bayburt</option><option value="Karaman">Karaman</option><option value="Kırıkkale">Kırıkkale</option><option value="Batman">Batman</option><option value="Şırnak">Şırnak</option><option value="Bartın">Bartın</option><option value="Ardahan">Ardahan</option><option value="Iğdır">Iğdır</option><option value="Yalova">Yalova</option><option value="Karabük">Karabük</option><option value="Kilis">Kilis</option><option value="Osmaniye">Osmaniye</option><option value="Düzce">Düzce</option>
+        </select>
+      </div>
 
       <div class="calc">
         <label>Başlangıç: <input type="date" class="start"></label>
@@ -269,8 +287,9 @@ vehicles.forEach((v,i)=>{
         <div class="total">Toplam: -</div>
       </div>
 
-      <div class="btn-row">
-        <a class="btn" href="https://wa.me/905555555555?text=${encodeURIComponent('Merhaba, ' + v.name + ' hakkında bilgi almak istiyorum.')}" target="_blank" rel="noopener">Hemen Ara</a>
+      <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="btn call-btn" href="tel:+905555555555">Hemen Ara</a>
+        <a class="btn whatsapp-reserve" href="#" target="_blank" rel="noopener">WhatsApp'tan Rezervasyon Yap</a>
         <a class="btn secondary" href="javascript:openModal(${i})">Detay</a>
       </div>
     </div>
@@ -284,13 +303,34 @@ vehicles.forEach((v,i)=>{
     const days = daysBetween(startInput.value, endInput.value);
     if(days>0){
       const total = days * v.price;
-      totalEl.textContent = `Toplam (${days} gün): ${formatTL(total)}`;
+      const grand = total + DEPOSIT;
+      totalEl.textContent = `Toplam (${days} gün): ${formatTL(total)} + ${formatTL(DEPOSIT)} (depozito) = ${formatTL(grand)}`;
+      // update whatsapp reserve link
+      const city = (article.querySelector('.city') && article.querySelector('.city').value) || 'Belirtilmemiş';
+      const s = startInput.value;
+      const e = endInput.value;
+      const msg = `Merhaba, ${v.name} aracı için ${city} şehrinde ${s} - ${e} (${days} gün) rezervasyon yapmak istiyorum. Toplam: ${days} gün x ${formatTL(v.price)} + ${formatTL(DEPOSIT)} (depozito) = ${formatTL(grand)}.`;
+      const waBtn = article.querySelector('.whatsapp-reserve');
+      if(waBtn){
+        waBtn.href = 'https://wa.me/905555555555?text=' + encodeURIComponent(msg);
+      }
     } else {
       totalEl.textContent = 'Toplam: -';
+      const waBtn = article.querySelector('.whatsapp-reserve');
+      if(waBtn) waBtn.href = '#';
     }
   }
   startInput.addEventListener('change', recalc);
   endInput.addEventListener('change', recalc);
+  // also update when city changes
+  const citySelect = article.querySelector('.city');
+  if(citySelect){
+    citySelect.addEventListener('change', recalc);
+  }
+
+  // set initial whatsapp href fallback
+  const waBtnInit = article.querySelector('.whatsapp-reserve');
+  if(waBtnInit) waBtnInit.href = '#';
 
   fleetEl.appendChild(article);
 });
@@ -376,6 +416,63 @@ document.querySelectorAll('.modal').forEach(m=>{
 });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal(); closeAdv(); } });
 
+
+// populate reservation list
+(function populateReservation(){
+  const resList = document.getElementById('reservationList');
+  vehicles.forEach((v,i)=>{
+    const item = document.createElement('div');
+    item.className = 'box';
+    item.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+        <div style="flex:1;min-width:180px">
+          <strong>${v.name}</strong><div style="color:#666;margin-top:6px">${formatTL(v.price)} / Gün</div>
+        </div>
+        <div style="min-width:220px">
+          <label style="font-weight:700;font-size:13px;display:block;margin-bottom:6px">Şehir</label>
+          <select class="city-res" style="width:100%;padding:8px;border-radius:6px;border:1px solid #eee;">
+            <option value="">Şehir seçiniz</option>
+            <option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Amasya">Amasya</option><option value="Ankara">Ankara</option><option value="Antalya">Antalya</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Bursa">Bursa</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Isparta">Isparta</option><option value="Mersin">Mersin</option><option value="İstanbul">İstanbul</option><option value="İzmir">İzmir</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Mardin">Mardin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Trabzon">Trabzon</option><option value="Tunceli">Tunceli</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option><option value="Aksaray">Aksaray</option><option value="Bayburt">Bayburt</option><option value="Karaman">Karaman</option><option value="Kırıkkale">Kırıkkale</option><option value="Batman">Batman</option><option value="Şırnak">Şırnak</option><option value="Bartın">Bartın</option><option value="Ardahan">Ardahan</option><option value="Iğdır">Iğdır</option><option value="Yalova">Yalova</option><option value="Karabük">Karabük</option><option value="Kilis">Kilis</option><option value="Osmaniye">Osmaniye</option><option value="Düzce">Düzce</option>
+          </select>
+        </div>
+        <div style="min-width:260px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <label>Başlangıç: <input type="date" class="start-res"></label>
+          <label>Bitiş: <input type="date" class="end-res"></label>
+        </div>
+        <div style="min-width:220px;text-align:right">
+          <div class="service-desc total-res">Toplam: -</div>
+          <a class="btn whatsapp-reserve-list" href="#" target="_blank" rel="noopener" style="margin-top:8px;display:inline-block">WhatsApp'tan Rezervasyon Yap</a>
+        </div>
+      </div>
+    `;
+    resList.appendChild(item);
+
+    // attach listeners
+    const start = item.querySelector('.start-res');
+    const end = item.querySelector('.end-res');
+    const totalEl = item.querySelector('.total-res');
+    const citySelect = item.querySelector('.city-res');
+    const waBtn = item.querySelector('.whatsapp-reserve-list');
+
+    function recalcRes(){
+      const days = (start.value && end.value) ? Math.ceil((new Date(end.value)-new Date(start.value))/(1000*60*60*24)) : 0;
+      if(days>0){
+        const total = days * v.price;
+        const grand = total + DEPOSIT;
+        totalEl.textContent = `Toplam: ${days} gün x ${formatTL(v.price)} + ${formatTL(DEPOSIT)} (depozito) = ${formatTL(grand)}`;
+        const city = citySelect.value || 'Belirtilmemiş';
+        const msg = `Merhaba, ${v.name} aracı için ${city} şehrinde ${start.value} - ${end.value} (${days} gün) rezervasyon yapmak istiyorum. Toplam: ${days} gün x ${formatTL(v.price)} + ${formatTL(DEPOSIT)} (depozito) = ${formatTL(grand)}.`;
+        waBtn.href = 'https://wa.me/905555555555?text=' + encodeURIComponent(msg);
+      } else {
+        totalEl.textContent = 'Toplam: -';
+        waBtn.href = '#';
+      }
+    }
+    start.addEventListener('change', recalcRes);
+    end.addEventListener('change', recalcRes);
+    citySelect.addEventListener('change', recalcRes);
+  });
+})();
 </script>
 
 /* === Mobil Uyum Düzeltmeleri (Final) === */
@@ -410,65 +507,21 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal(); cl
     align-items: center;
   }
 }
-</style>
-
-
-<style>
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: #081017;
-  position: absolute;
-  right: 20px;
-  top: 18px;
-  z-index: 1001;
+/* --- WhatsApp Butonlarını Yeşil Yap --- */
+.btn.whatsapp-reserve,
+.btn.whatsapp-reserve-list {
+  background-color: #25D366 !important; /* WhatsApp yeşili */
+  border-color: #25D366 !important;
+  color: #fff !important;
 }
-@media (max-width: 768px) {
-  header {
-    position: relative;
-  }
-  .menu-toggle {
-    display: block;
-  }
-  header .nav {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    background: #fff;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    border-top: 1px solid #ddd;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    padding: 12px 0;
-    z-index: 1000;
-  }
-  header .nav a {
-    display: block;
-    padding: 10px;
-    text-align: center;
-  }
-  header .nav.show {
-    display: flex;
-  }
-}
-</style>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('header .nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      nav.classList.toggle('show');
-    });
-  }
-});
-</script>
+.btn.whatsapp-reserve:hover,
+.btn.whatsapp-reserve-list:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+
+</style>
 
 </body>
 </html>
