@@ -93,7 +93,10 @@
     <a href="#locations">Lokasyonlar</a>
     <a href="#about">Hakkımızda</a>
   </nav>
+
+<button class="menu-toggle" aria-label="Menüyü Aç/Kapat">☰</button>
 </header>
+
 <!-- Hero Görseli -->
 <section id="hero" style="text-align:center;position:relative;padding-bottom:24px;">
   <img src="images/hero.jpg" alt="Flora Car Filo Karşılama Görseli" style="width:100%;height:auto;display:block;">
@@ -408,6 +411,64 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal(); cl
   }
 }
 </style>
+
+
+<style>
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #081017;
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  z-index: 1001;
+}
+@media (max-width: 768px) {
+  header {
+    position: relative;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  header .nav {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 12px 0;
+    z-index: 1000;
+  }
+  header .nav a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+  }
+  header .nav.show {
+    display: flex;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('header .nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
+  }
+});
+</script>
 
 </body>
 </html>
