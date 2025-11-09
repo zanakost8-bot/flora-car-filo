@@ -270,7 +270,8 @@ vehicles.forEach((v,i)=>{
     <div class="card-body">
       <div class="title">${v.name}</div>
       <div class="meta-row"><div>Yakıt: ${v.fuel}</div><div>Vites: ${v.gear}</div><div>Model: ${v.model}</div></div>
-      <div class="price-row"><div class="daily">${formatTL(v.price)} / Gün</div><div class="monthly">Aylık (30g): ${formatTL(i < 4 ? Math.round(v.price*30*0.9) : v.price*30)}</div></div>
+      <div class="price-row"><div class="daily">${formatTL(v.price)} / Gün</div><div class="deposit">Depozito Ücreti: 3000 ₺</div>
+      <div class="monthly">Aylık (30g): ${formatTL(i < 4 ? Math.round(v.price*30*0.9) : v.price*30)}</div></div>
       <div class="desc">Araç bakımları rutin olarak yapılmaktadır.</div>
 
       <div style="margin-top:8px">
@@ -519,6 +520,26 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal(); cl
 .btn.whatsapp-reserve-list:hover {
   filter: brightness(1.1);
   transform: scale(1.02);
+}
+
+
+/* --- WhatsApp Butonlarını Yeşil Yap --- */
+.btn.whatsapp-reserve,
+.btn.whatsapp-reserve-list {
+  background-color: #25D366 !important; /* WhatsApp yeşili */
+  border-color: #25D366 !important;
+  color: #fff !important;
+}
+.btn.whatsapp-reserve:hover,
+.btn.whatsapp-reserve-list:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+.deposit {
+  color: #c9a24a;
+  font-weight: 600;
+  margin-top: 4px;
+  font-size: 14px;
 }
 
 </style>
